@@ -22,7 +22,7 @@ let prevReferenceName = referenceName
 
 // Main
 function preload() {
-  fontThinItalic = loadFont('../libraries/Roboto-ThinItalic.ttf');
+  fontThinItalic = loadFont('./libraries/Roboto-ThinItalic.ttf');
 }
 
 function setup() {

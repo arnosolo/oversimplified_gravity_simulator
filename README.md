@@ -4,7 +4,7 @@
 
 ##### Introduction
 
-​	A simple gravity simulator, based on [p5js](https://p5js.org/). [Click here]() to enter the demo page.
+​	A simple gravity simulator, based on [p5js](https://p5js.org/). [Click here](https://arnosolo.github.io/oversimplified_gravity_simulator/) to enter the demo page.
 
 
 
