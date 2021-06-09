@@ -12,7 +12,8 @@ const moverConfigs3 = [
   },
   { // Earth
     pX: -180, pY: -100, vX: 0, vY: 18, accX: 0, accY: 0,
-    mass: 100, radius: 6, tag: 'Earth', color: {r:20, g:150, b:220}
+    mass: 100, radius: 6, tag: 'Earth', color: {r:20, g:150, b:220},
+    pathLenMax: 200
   },
   { // Luna
     pX: -190, pY: -100, vX: 0, vY: 8, accX: 0, accY: 0,
@@ -22,7 +23,7 @@ const moverConfigs3 = [
   { // Mars
     pX: -350, pY: -100, vX: 0, vY: 13, accX: 0, accY: 0,
     mass: 80, radius: 5, tag: 'Mars', color: {r:200, g:80, b:20},
-    pathLenMax: 1000
+    pathLenMax: 700
   },
   { // Mars moon Phobos
     pX: -360, pY: -100, vX: 0, vY: 4, accX: 0, accY: 0,

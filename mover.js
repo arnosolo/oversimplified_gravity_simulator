@@ -4,9 +4,9 @@ class Mover {
     this.position = createVector(pX, pY);
     this.velocity = createVector(vX, vY);
     this.acc = createVector(accX, accY);
-    this.mass = mass;
-    this.radius = radius;
-    this.tag = tag;
+    this.mass = mass || 0;
+    this.radius = radius || 0.1;
+    this.tag = tag || '';
     this.dt = 0.1
     this.path = []
     this.relativePath = []

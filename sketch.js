@@ -13,12 +13,17 @@ let cameraFollow = 'Sun'
 // Globals
 let cam1
 let fontThinItalic
-const origin = { position: { x: 0, y: 0, z:0 } } // Could be used as an reference
 let camPos = { x: 0, y: 0, z:450 }
 let movers = []
 let referencePicker
 let cameraPicker
 let prevReferenceName = referenceName
+const originConfig = {
+  pX: 0, pY: 0, vX: 0, vY: 0, accX: 0, accY: 0,
+  mass: 0, radius: 0.1, tag: 'Origin', color: {r:170, g:140, b:134},
+  pathLenMax: 1, hide: true
+}
+let origin
 
 // Main
 function preload() {
@@ -34,18 +39,71 @@ function setup() {
   moverConfigs.forEach(config => {
     movers.push(new Mover(config))
   })
+  origin = new Mover(originConfig)
+  movers.push(origin)
 
-  // GUI
+  setGUI()
+}
+
+function draw() {
+  background(220);
+
+  // 1. Set reference 
+  // NOTE: Luna is the Center of Universe !!!! [Doge]
+  let reference = movers.find(mover => mover.tag == referenceName)
+  // let reference = getCenter(movers, 'Sun', 'Earth') // Get center point of two Movers
+  if(!reference)reference = origin
+
+  // reset path if reference change
+  if(prevReferenceName != referenceName){
+    movers.forEach(mover => mover.relativePath = [])
+    prevReferenceName = referenceName
+  }
+
+  // 2. Apply gravity
+  movers.forEach(mover => {
+    if(mover.tag != 'Origin') {
+      mover.attracted(movers.filter(item => item != mover))
+    }
+  })
+
+  // 3. Update movers status (Can't be merged with last step!)
+  movers.forEach(mover => {
+    mover.update(reference)
+  })
+
+  // 4. Set Camera
+  // Option1: Follow the reference
+  // cam1.setPosition(reference.position.x, reference.position.y, 500);
+  // cam1.lookAt(reference.position.x, reference.position.y, 0);
+
+  // Option2: Follow the Earth
+  let temp = movers.find(mover => mover.tag == cameraFollow).position
+  camPos.x = temp.x
+  camPos.y = temp.y
+  cam1.setPosition(camPos.x, camPos.y, camPos.z);
+  cam1.lookAt(camPos.x, camPos.y, 0);
+
+  // 5. Draw
+  movers.forEach(mover => {
+    mover.show(reference)
+  })
+
+}
+
+
+// GUI
+const setGUI = () => {
   let controlPanel = document.getElementById('control-panel')
-  
+
   // hide/show path
   let hidePathBtn = document.createElement('button')
-  hidePathBtn.innerHTML = 'Hide Path'
+  hidePathBtn.innerHTML = '💫Hide Path'
   hidePathBtn.onclick = (e) => {
-    if(hidePathBtn.innerHTML == 'Hide Path'){
-      hidePathBtn.innerHTML = 'Show Path'
+    if(hidePathBtn.innerHTML == '💫Hide Path'){
+      hidePathBtn.innerHTML = '💫Show Path'
     } else {
-      hidePathBtn.innerHTML = 'Hide Path'
+      hidePathBtn.innerHTML = '💫Hide Path'
     }
     movers.forEach(m => m.hidePath = !m.hidePath)
   }
@@ -54,7 +112,7 @@ function setup() {
 
   // referencePicker
   let referenceLabel = document.createElement('label')
-  referenceLabel.innerHTML = 'Reference'
+  referenceLabel.innerHTML = '📍 Reference'
   referencePicker = document.createElement('select')
   movers.forEach(mover => {
     let option = document.createElement('option')
@@ -73,7 +131,7 @@ function setup() {
 
   // cameraPicker
   let cameraLabel = document.createElement('label')
-  cameraLabel.innerHTML = 'Camera follow '
+  cameraLabel.innerHTML = '📷 Cam follow '
   cameraPicker = document.createElement('select')
   movers.forEach(mover => {
     let option = document.createElement('option')
@@ -90,56 +148,6 @@ function setup() {
   cameraLabel.className = 'moverPicker'
   controlPanel.append(cameraLabel)
 }
-
-function draw() {
-  background(220);
-
-  // 1. Set reference 
-  // NOTE: Luna is the Center of Universe !!!! [Doge]
-  let reference
-  // let reference = getCenter(movers, 'Sun', 'Earth') // Get center point of two Movers
-  if(referenceName == 'origin') {
-    reference = origin
-  } else {
-    reference = movers.find(mover => mover.tag == referenceName)
-    if(!reference)reference = origin
-  }
-
-  // reset path if reference change
-  if(prevReferenceName != referenceName){
-    movers.forEach(mover => mover.relativePath = [])
-    prevReferenceName = referenceName
-  }
-
-  // 2. Apply gravity
-  movers.forEach(mover => {
-    mover.attracted(movers.filter(item => item != mover))
-  })
-
-  // 3. Update movers status (Can't be merged with last step!)
-  movers.forEach(mover => {
-    mover.update(reference)
-  })
-
-  // 4. Set Camera
-  // Option1: Follow the reference
-  // cam1.setPosition(reference.position.x, reference.position.y, 500);
-  // cam1.lookAt(reference.position.x, reference.position.y, 0);
-
-  // Option2: Follow the Earth
-  const temp = movers.find(mover => mover.tag == cameraFollow).position
-  camPos.x = temp.x
-  camPos.y = temp.y
-  cam1.setPosition(camPos.x, camPos.y, camPos.z);
-  cam1.lookAt(camPos.x, camPos.y, 0);
-
-  // 5. Draw
-  movers.forEach(mover => {
-    mover.show(reference)
-  })
-
-}
-
 
 // Utils
 /**
