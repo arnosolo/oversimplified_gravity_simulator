@@ -8,8 +8,9 @@ html, body {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  justify-content:center;
+  padding-top: 2em;
   gap: 2em;
-  justify-content: center;
   height: 100vh;
 }
 

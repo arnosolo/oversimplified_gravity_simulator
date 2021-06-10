@@ -1,6 +1,8 @@
 class Mover {
   constructor(moverProps) {
-    const { pX, pY, vX, vY, accX, accY, mass, radius, tag, color, pathLenMax, hide, hideTag } = moverProps;
+    const { pX, pY, vX, vY, accX, accY, mass, radius, 
+      tag, color, pathLenMax, hide, hideTag, hidePath,
+      hideVel, hideForce } = moverProps;
     this.position = createVector(pX, pY);
     this.velocity = createVector(vX, vY);
     this.acc = createVector(accX, accY);
@@ -10,11 +12,13 @@ class Mover {
     this.dt = 0.1
     this.path = []
     this.relativePath = []
-    this.color = color
+    this.color = color || {r:230, g:150, b:0}
     this.pathLenMax = pathLenMax || 300
     this.hide = hide || false
     this.hideTag = hideTag || false
-    this.hidePath = false
+    this.hidePath = hidePath || false
+    this.hideVel = hideVel || true
+    this.hideForce = hideForce || true
   }
 
   attracted(others) {
@@ -73,16 +77,25 @@ class Mover {
       }
 
       // Draw velocity
-      // stroke(200, 100, 0);
-      // let velocityScale = 1;
-      // line(this.position.x, this.position.y,
-      //   velocityScale * this.velocity.x + this.position.x, velocityScale * this.velocity.y + this.position.y)
+      if(!this.hideVel) {
+        push()
+        let vX = this.velocity.x - reference.velocity.x
+        let vY = this.velocity.y - reference.velocity.y
+        translate(this.position.x, this.position.y)
+        stroke(200, 100, 0);
+        strokeWeight(1)
+        let velScale = 1;
+        line(0,0,vX*velScale,vY*velScale)
+        pop()
+      }
 
       // Draw Force
-      // stroke(0, 100, 200);
-      // let forceScale = 0.01;
-      // line(this.position.x, this.position.y,
-      //   forceScale * this.acc.x * this.mass + this.position.x, forceScale * this.acc.y * this.mass + this.position.y)
+      if(!this.hideForce) {
+        stroke(0, 100, 200);
+        let forceScale = 0.02;
+        line(this.position.x, this.position.y,
+          forceScale * this.acc.x * this.mass + this.position.x, forceScale * this.acc.y * this.mass + this.position.y)
+      }
 
       // Draw Path
       // stroke(r, g, b, 20)
