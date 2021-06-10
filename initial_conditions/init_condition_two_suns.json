@@ -1,1 +1,93 @@
-[{"pX":0,"pY":-100,"vX":0,"vY":0,"mass":6000,"radius":12,"tag":"Sun","color":"#e69600","pathLenMax":600},{"pX":80,"pY":-100,"vX":0,"vY":40,"mass":6000,"radius":12,"tag":"Sun2","color":"#e69600","pathLenMax":600},{"pX":-60,"pY":-100,"vX":0,"vY":60,"mass":80,"radius":4,"tag":"Mercury","color":"#78b400","pathLenMax":80},{"pX":-180,"pY":-100,"vX":0,"vY":45,"mass":100,"radius":6,"tag":"Earth","color":"#1496dc"},{"pX":-190,"pY":-100,"vX":0,"vY":35,"mass":2,"radius":2,"tag":"Luna","color":"#b4b496","pathLenMax":30,"hide":false,"hideTag":true},{"pX":-350,"pY":-100,"vX":0,"vY":38,"mass":80,"radius":5,"tag":"Mars","color":"#c85014","pathLenMax":500},{"pX":-360,"pY":-100,"vX":0,"vY":30,"mass":1,"radius":1.6,"tag":"Phobos","color":"#95a5a6","pathLenMax":30,"hideTag":true},{"pX":-350,"pY":-120,"vX":6,"vY":38,"mass":0.6,"radius":1.6,"tag":"Deimos","color":"#aa8c86","pathLenMax":30,"hideTag":true}]
+[
+  {
+    "pX": 0,
+    "pY": -100,
+    "vX": 0,
+    "vY": 0,
+    "mass": 6000,
+    "radius": 12,
+    "tag": "Sun",
+    "color": "#e69600",
+    "pathLenMax": 600
+  },
+  {
+    "pX": 80,
+    "pY": -100,
+    "vX": 0,
+    "vY": 40,
+    "mass": 6000,
+    "radius": 12,
+    "tag": "Sun2",
+    "color": "#e69600",
+    "pathLenMax": 600
+  },
+  {
+    "pX": -60,
+    "pY": -100,
+    "vX": 0,
+    "vY": 60,
+    "mass": 80,
+    "radius": 4,
+    "tag": "Mercury",
+    "color": "#78b400",
+    "pathLenMax": 80
+  },
+  {
+    "pX": -180,
+    "pY": -100,
+    "vX": 0,
+    "vY": 45,
+    "mass": 100,
+    "radius": 6,
+    "tag": "Earth",
+    "color": "#1496dc"
+  },
+  {
+    "pX": -190,
+    "pY": -100,
+    "vX": 0,
+    "vY": 35,
+    "mass": 2,
+    "radius": 2,
+    "tag": "Luna",
+    "color": "#b4b496",
+    "pathLenMax": 30,
+    "hide": false,
+    "hideTag": true
+  },
+  {
+    "pX": -350,
+    "pY": -100,
+    "vX": 0,
+    "vY": 38,
+    "mass": 80,
+    "radius": 5,
+    "tag": "Mars",
+    "color": "#c85014",
+    "pathLenMax": 500
+  },
+  {
+    "pX": -360,
+    "pY": -100,
+    "vX": 0,
+    "vY": 30,
+    "mass": 1,
+    "radius": 1.6,
+    "tag": "Phobos",
+    "color": "#95a5a6",
+    "pathLenMax": 30,
+    "hideTag": true
+  },
+  {
+    "pX": -350,
+    "pY": -120,
+    "vX": 6,
+    "vY": 38,
+    "mass": 0.6,
+    "radius": 1.6,
+    "tag": "Deimos",
+    "color": "#aa8c86",
+    "pathLenMax": 30,
+    "hideTag": true
+  }
+]

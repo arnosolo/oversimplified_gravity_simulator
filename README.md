@@ -10,6 +10,8 @@
 
 ##### Change initial condition
 
+​	You can find some Predefined configuration in initial_conditions, include Solar system, Two Suns and Three Suns.
+
 ```json
 [
   {
