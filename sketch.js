@@ -92,10 +92,10 @@ function draw() {
   // cam1.lookAt(reference.position.x, reference.position.y, 0);
 
   // Option2: Follow the Earth
-  let temp = movers.find(mover => mover.tag == cameraFollow).position
+  let temp = movers.find(mover => mover.tag == cameraFollow)
   if(temp) {
-    camPos.x = temp.x
-    camPos.y = temp.y
+    camPos.x = temp.position.x
+    camPos.y = temp.position.y
   }
   cam1.setPosition(camPos.x, camPos.y, camPos.z);
   cam1.lookAt(camPos.x, camPos.y, 0);
