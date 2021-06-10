@@ -12,15 +12,18 @@
 
 ```json
 [
-    {
-        "tag":"Sun",	  // Name
-        "pX":0,"pY":-100, // Init Position
-        "vX":0,"vY":0, 	  // Init velocity
-        "mass":6000,	  // mass
-        "radius":12,	  // size
-        "pathLenMax":200, // trajectory length
-        "color":{"r":230,"g":150,"b":0}
-    },{"pX":-60,"pY":-100,"vX":0,"vY":30,"mass":80,"radius":4,"tag":"Mercury","color":{"r":120,"g":180,"b":0},"pathLenMax":80}]
+  {
+    "tag": "Sun", // name
+    "pX": 0,      // init position
+    "pY": -100,   // init position
+    "vX": 0,      // init velocity
+    "vY": 0,      // init velocity
+    "mass": 6000,
+    "radius": 12,
+    "color": "#e69600",
+    "pathLenMax": 200
+  }
+]
 ```
 
 
