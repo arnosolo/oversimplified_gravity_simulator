@@ -12,7 +12,7 @@ class Mover {
     this.dt = 0.1
     this.path = []
     this.relativePath = []
-    this.color = color || {r:230, g:150, b:0}
+    this.color = color || '#9c9891'
     this.pathLenMax = pathLenMax || 300
     this.hide = hide || false
     this.hideTag = hideTag || false
@@ -62,10 +62,9 @@ class Mover {
 
   show(reference) {
     if (!this.hide) {
-      let { r, g, b } = this.color
       // Draw circle
       stroke(120);
-      fill(r, g, b)
+      fill(this.color)
       circle(this.position.x, this.position.y, 2 * this.radius);
 
       // Draw tag
@@ -111,7 +110,7 @@ class Mover {
       if(!this.hidePath){
         push()
         translate(reference.position.x, reference.position.y)
-        stroke(r, g, b, 20)
+        stroke(this.color)
         strokeWeight(1)
         noFill()
         beginShape()

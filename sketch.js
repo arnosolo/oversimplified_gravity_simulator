@@ -211,7 +211,7 @@ const setGUI = () => {
     document.body.removeChild(link);
   };
   saveConditionBtn.onclick = (e) => {
-    const filename = `initCondition_${new Date().toLocaleTimeString()}.json`
+    const filename = `init_condition_${new Date().toLocaleTimeString()}.json`
     funDownload(JSON.stringify(moverConfigs), filename)
   }
 
