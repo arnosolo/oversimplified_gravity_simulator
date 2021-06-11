@@ -185,8 +185,9 @@ const setGUI = () => {
 
   let initCondition = document.createElement('textarea')
   initCondition.id = 'initCondition'
+  initCondition.className = 'initCondition'
   initCondition.cols = 30
-  initCondition.rows = 22
+  initCondition.rows = 20
   initCondition.value = JSON.stringify(moverConfigs)
 
   let applyConditionBtn = document.createElement('button')
