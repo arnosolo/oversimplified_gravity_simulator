@@ -2,12 +2,14 @@ class Mover {
   constructor(moverProps) {
     const { pX, pY, vX, vY, accX, accY, mass, radius,
       tag, color, pathLenMax, hide, hideTag, hidePath,
-      hideVel, hideForce } = moverProps;
+      hideVel, hideForce, velScale, forceScale,
+      forceColor, velColor } = moverProps;
     this.position = createVector(pX, pY);
     this.initPosition = createVector(pX, pY);
     this.velocity = createVector(vX, vY);
     this.initVelocity = createVector(vX, vY);
     this.acc = createVector(accX, accY);
+    this.initAcc = createVector();
     this.mass = mass || 0;
     this.radius = radius || 5;
     this.tag = tag || '';
@@ -21,8 +23,11 @@ class Mover {
     this.hidePath = hidePath || false
     this.hideVel = hideVel || true
     this.hideForce = hideForce || true
-    this.velScale = 1
-    this.forceScale = 0.2
+    this.velScale = velScale || 1
+    this.forceScale = forceScale || 0.2
+    this.forceColor = forceColor || '#7f8fa6'
+    this.velColor = velColor || '#8c7ae6'
+    this.frameCount = 0
   }
 
   attracted(others) {
@@ -33,10 +38,11 @@ class Mover {
       let acc = distance.normalize().mult(G * other.mass / distanceSq); // 对象的方法会修改对象的值
       this.acc.add(acc)
     })
-  }
-
-  applyAcc(anotherAcc) {
-    this.acc.add(anotherAcc)
+    
+    // Get initAcc
+    if(this.frameCount == 0) {
+      this.initAcc = this.acc.copy()
+    }
   }
 
   update(reference) {
@@ -54,6 +60,8 @@ class Mover {
     } else {
       this.relativePath.splice(-1, 1)
     }
+
+    this.frameCount ++
   }
 
   editViewUpdate(reference) {
@@ -71,6 +79,8 @@ class Mover {
       let y = this.position.y - reference.position.y
       this.relativePath.push({ x, y })
     }
+
+    this.frameCount ++
   }
 
   show(reference) {
@@ -105,8 +115,8 @@ class Mover {
         }
 
         push()
-        stroke(120);
-        fill(120)
+        stroke(this.velColor);
+        fill(this.velColor)
         translate(this.position.x, this.position.y)
         rotate(theta)
         line(0, 0, mag,0)
@@ -130,11 +140,30 @@ class Mover {
 
       // Draw Force
       if (!this.hideForce) {
-        stroke(0, 100, 200);
-        let forceScale = this.forceScale;
-        line(this.position.x, this.position.y,
-          forceScale * this.acc.x * this.mass + this.position.x, forceScale * this.acc.y * this.mass + this.position.y)
-      }
+        let size = 0
+        let force = p5.Vector.mult(this.acc, this.mass*this.forceScale)
+        let theta = force.heading()
+        let mag = force.mag()
+        // Dynamically change arrow size
+        if(mag > 30) {
+          size = 3
+        } else if(mag > 5) {
+          size = map(mag, 5, 30, 1, 3)
+        }
+
+        push()
+        stroke(this.forceColor);
+        fill(this.forceColor)
+        translate(this.position.x, this.position.y)
+        rotate(theta)
+        line(0, 0, mag,0)
+        beginShape();
+        vertex(mag, 0);
+        vertex(mag - 3 * size, size);
+        vertex(mag - 3 * size, -size);
+        endShape(CLOSE);
+        pop()
+        }
 
       // Draw Path (relative to reference)
       if (!this.hidePath) {
@@ -185,8 +214,8 @@ class Mover {
         }
 
         push()
-        stroke(120);
-        fill(120)
+        stroke(this.velColor);
+        fill(this.velColor)
         translate(this.initPosition.x, this.initPosition.y)
         rotate(theta)
         line(0, 0, mag,0)
@@ -200,10 +229,29 @@ class Mover {
 
       // Draw Force
       if (!this.hideForce) {
-        stroke(0, 100, 200);
-        let forceScale = this.forceScale;
-        line(this.position.x, this.position.y,
-          forceScale * this.acc.x * this.mass + this.position.x, forceScale * this.acc.y * this.mass + this.position.y)
+        let size = 0
+        let force = p5.Vector.mult(this.initAcc, this.mass*this.forceScale)
+        let theta = force.heading()
+        let mag = force.mag()
+        // Dynamically change arrow size
+        if(mag > 30) {
+          size = 3
+        } else if(mag > 5) {
+          size = map(mag, 5, 30, 1, 3)
+        }
+
+        push()
+        stroke(this.forceColor);
+        fill(this.forceColor)
+        translate(this.initPosition.x, this.initPosition.y)
+        rotate(theta)
+        line(0, 0, mag,0)
+        beginShape();
+        vertex(mag, 0);
+        vertex(mag - 3 * size, size);
+        vertex(mag - 3 * size, -size);
+        endShape(CLOSE);
+        pop()
       }
 
       // Draw Path (relative to reference)

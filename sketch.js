@@ -9,7 +9,7 @@ const FRAME_RATE = 50
 let moverConfigs = moverConfigs1
 let referenceName = 'Origin'
 let cameraFollow = 'Origin'
-let drawMode = 'run' // edit_init or run
+let editMode = false // true: edit init condition mode
 
 // Globals
 let cam1
@@ -23,6 +23,8 @@ let prevReferenceName = referenceName
 let prevmoverConfigs = moverConfigs
 const originConfig = { tag: 'Origin', pathLenMax: 1, hide: true }
 let origin
+let showAllForce = false
+let showAllVel = false
 
 // Main
 function preload() {
@@ -45,7 +47,7 @@ function setup() {
 }
 
 function draw() {
-  if(drawMode=='edit_init'){
+  if(editMode){
     drawInit()
   } else {
     drawRun()
@@ -242,15 +244,26 @@ const setGUI = () => {
   hidePathBtn.className = 'button'
   controlPanel.append(hidePathBtn)
 
-  // hide/show velocity
+  // hide/show Force
+  let hideForceBtn = document.createElement('button')
+  showAllForce = false
+  hideForceBtn.innerHTML = showAllForce ? '↗️ Hide Net Force' : '↗️ Show Net Force'
+  hideForceBtn.onclick = (e) => {
+    showAllForce = !showAllForce
+    hideForceBtn.innerHTML = showAllForce ? '↗️ Hide Net Force' : '↗️ Show Net Force'
+    movers.forEach(m => m.hideForce = !m.hideForce)
+  }
+  hideForceBtn.className = 'button'
+  controlPanel.append(hideForceBtn)
+
+  // hide/show vel
   let hideVelBtn = document.createElement('button')
-  hideVelBtn.innerHTML = '🏃‍♂️ Show Velocity'
+  showAllVel = false
+  hideVelBtn.innerHTML = showAllVel ? '🏃‍♂️ Hide Velocity' : '🏃‍♂️ Show Velocity'
+  movers.forEach(m => m.hideVel = true)
   hideVelBtn.onclick = (e) => {
-    if(hideVelBtn.innerHTML == '🏃‍♂️ Show Velocity'){
-      hideVelBtn.innerHTML = '🏃‍♂️ Hide Velocity'
-    } else {
-      hideVelBtn.innerHTML = '🏃‍♂️ Show Velocity'
-    }
+    showAllVel = !showAllVel
+    hideVelBtn.innerHTML = showAllVel ? '🏃‍♂️ Hide Velocity' : '🏃‍♂️ Show Velocity'
     movers.forEach(m => m.hideVel = !m.hideVel)
   }
   hideVelBtn.className = 'button'
@@ -317,16 +330,11 @@ const setGUI = () => {
 
   let editViewBtn = document.createElement('button')
   editViewBtn.className = 'button'
-  editViewBtn.innerHTML = '✍️ Edit view'
+  editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
   editViewBtn.onclick = () => {
-    if(editViewBtn.innerHTML == '✍️ Edit view') {
-      editViewBtn.innerHTML = '✔️ Quit Edit view'
-      drawMode = 'edit_init'
-    } else {
-      editViewBtn.innerHTML = '✍️ Edit view'
-      drawMode = 'run'
-      moverConfigs = JSON.parse(initCondition.value)
-    }
+    editMode = !editMode
+    editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
+    moverConfigs = JSON.parse(initCondition.value)
   }
 
 
@@ -394,15 +402,27 @@ const setEditViewGUI = () => {
   hidePathBtn.className = 'button'
   controlPanel.append(hidePathBtn)
 
+  // hide/show Force
+  let hideForceBtn = document.createElement('button')
+  showAllForce = true
+  hideForceBtn.innerHTML = showAllForce ? '↗️ Hide Net Force' : '↗️ Show Net Force'
+  editViewMovers.forEach(m => m.hideForce = false)
+  hideForceBtn.onclick = (e) => {
+    showAllForce = !showAllForce
+    hideForceBtn.innerHTML = showAllForce ? '↗️ Hide Net Force' : '↗️ Show Net Force'
+    editViewMovers.forEach(m => m.hideForce = !m.hideForce)
+  }
+  hideForceBtn.className = 'button'
+  controlPanel.append(hideForceBtn)
+
   // hide/show velocity
   let hideVelBtn = document.createElement('button')
-  hideVelBtn.innerHTML = '🏃‍♂️ Show Velocity'
+  showAllVel = true
+  hideVelBtn.innerHTML = showAllVel ? '🏃‍♂️ Hide Velocity' : '🏃‍♂️ Show Velocity'
+  editViewMovers.forEach(m => m.hideVel = false)
   hideVelBtn.onclick = (e) => {
-    if(hideVelBtn.innerHTML == '🏃‍♂️ Show Velocity'){
-      hideVelBtn.innerHTML = '🏃‍♂️ Hide Velocity'
-    } else {
-      hideVelBtn.innerHTML = '🏃‍♂️ Show Velocity'
-    }
+    showAllVel = !showAllVel
+    hideVelBtn.innerHTML = showAllVel ? '🏃‍♂️ Hide Velocity' : '🏃‍♂️ Show Velocity'
     editViewMovers.forEach(m => m.hideVel = !m.hideVel)
   }
   hideVelBtn.className = 'button'
@@ -414,16 +434,11 @@ const setEditViewGUI = () => {
 
   let editViewBtn = document.createElement('button')
   editViewBtn.className = 'button'
-  editViewBtn.innerHTML = drawMode=='edit_init' ? '✔️ Quit Edit view' : '✍️ Edit view'
+  editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
   editViewBtn.onclick = () => {
-    if(editViewBtn.innerHTML == '✍️ Edit view') {
-      editViewBtn.innerHTML = '✔️ Quit Edit view'
-      drawMode = 'edit_init'
-    } else {
-      editViewBtn.innerHTML = '✍️ Edit view'
-      drawMode = 'run'
-      moverConfigs = JSON.parse(initCondition.value)
-    }
+    editMode = !editMode
+    editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
+    moverConfigs = JSON.parse(initCondition.value)
   }
 
   let initCondition = document.createElement('textarea')
