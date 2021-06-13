@@ -90,33 +90,42 @@ class Mover {
 
       // Draw velocity
       if (!this.hideVel) {
-        // let vX = this.velocity.x - reference.velocity.x
-        // let vY = this.velocity.y - reference.velocity.y
-        // let vel = createVector(vY, vX)
-        // let theta = PI / 2 - vel.heading()
-        // let mag = vel.mag()
-        // let size = 3
-        // push()
-        // stroke(140);
-        // fill(140)
-        // translate(this.position.x, this.position.y)
-        // rotate(theta)
-        // line(0, 0, mag,0)
-        // beginShape();
-        // vertex(mag, 0);
-        // vertex(mag - 3 * size, size);
-        // vertex(mag - 3 * size, -size);
-        // endShape(CLOSE);
-        // pop()
-        push()
+        let size = 0
         let vX = this.velocity.x - reference.velocity.x
         let vY = this.velocity.y - reference.velocity.y
-        let scale = this.velScale;
+        let vel = createVector(vY, vX)
+        let theta = PI / 2 - vel.heading()
+        let mag = vel.mag()
+
+        // Dynamically change arrow size
+        if(mag > 30) {
+          size = 3
+        } else if(mag > 5) {
+          size = map(mag, 5, 30, 1, 3)
+        }
+
+        push()
+        stroke(120);
+        fill(120)
         translate(this.position.x, this.position.y)
-        stroke(200, 100, 0);
-        strokeWeight(1)
-        line(0, 0, vX * scale, vY * scale)
+        rotate(theta)
+        line(0, 0, mag,0)
+        beginShape();
+        vertex(mag, 0);
+        vertex(mag - 3 * size, size);
+        vertex(mag - 3 * size, -size);
+        endShape(CLOSE);
         pop()
+        // push()
+        // let vX = this.velocity.x - reference.velocity.x
+        // let vY = this.velocity.y - reference.velocity.y
+        // let scale = this.velScale;
+        // translate(this.position.x, this.position.y)
+        // stroke(200, 100, 0);
+        // strokeWeight(1)
+        // line(0, 0, vX * scale, vY * scale)
+        // pop()
+        
       }
 
       // Draw Force
@@ -161,14 +170,31 @@ class Mover {
 
       // Draw velocity
       if (!this.hideVel) {
-        push()
+        let size = 0
         let vX = this.initVelocity.x - reference.initVelocity.x
         let vY = this.initVelocity.y - reference.initVelocity.y
-        let scale = this.velScale;
+        let vel = createVector(vY, vX)
+        let theta = PI / 2 - vel.heading()
+        let mag = vel.mag()
+
+        // Dynamically change arrow size
+        if(mag > 30) {
+          size = 3
+        } else if(mag > 5) {
+          size = map(mag, 5, 30, 1, 3)
+        }
+
+        push()
+        stroke(120);
+        fill(120)
         translate(this.initPosition.x, this.initPosition.y)
-        stroke(200, 100, 0);
-        strokeWeight(1)
-        line(0, 0, vX * scale, vY * scale)
+        rotate(theta)
+        line(0, 0, mag,0)
+        beginShape();
+        vertex(mag, 0);
+        vertex(mag - 3 * size, size);
+        vertex(mag - 3 * size, -size);
+        endShape(CLOSE);
         pop()
       }
 
