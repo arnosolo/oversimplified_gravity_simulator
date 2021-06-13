@@ -1,10 +1,12 @@
 class Mover {
   constructor(moverProps) {
-    const { pX, pY, vX, vY, accX, accY, mass, radius, 
+    const { pX, pY, vX, vY, accX, accY, mass, radius,
       tag, color, pathLenMax, hide, hideTag, hidePath,
       hideVel, hideForce } = moverProps;
     this.position = createVector(pX, pY);
+    this.initPosition = createVector(pX, pY);
     this.velocity = createVector(vX, vY);
+    this.initVelocity = createVector(vX, vY);
     this.acc = createVector(accX, accY);
     this.mass = mass || 0;
     this.radius = radius || 5;
@@ -19,6 +21,8 @@ class Mover {
     this.hidePath = hidePath || false
     this.hideVel = hideVel || true
     this.hideForce = hideForce || true
+    this.velScale = 1
+    this.forceScale = 0.2
   }
 
   attracted(others) {
@@ -42,14 +46,6 @@ class Mover {
     let dx = p5.Vector.mult(this.velocity, this.dt)
     this.position.add(dx);
 
-    // Update Path
-    // if(this.path.length < 800) {
-    //   let {x, y} = this.position
-    //   this.path.unshift({x, y})
-    // } else {
-    //   this.path.splice(-1, 1)
-    // }
-
     // Update Path (relative to reference)
     if (this.relativePath.length < this.pathLenMax) {
       let x = this.position.x - reference.position.x
@@ -57,6 +53,23 @@ class Mover {
       this.relativePath.unshift({ x, y })
     } else {
       this.relativePath.splice(-1, 1)
+    }
+  }
+
+  editViewUpdate(reference) {
+    // Update Position
+    if (this.relativePath.length < this.pathLenMax) {
+      let dv = p5.Vector.mult(this.acc, this.dt)
+      this.velocity.add(dv);
+      let dx = p5.Vector.mult(this.velocity, this.dt)
+      this.position.add(dx);
+    }
+
+    // Update Path (relative to reference)
+    if (this.relativePath.length < this.pathLenMax) {
+      let x = this.position.x - reference.position.x
+      let y = this.position.y - reference.position.y
+      this.relativePath.push({ x, y })
     }
   }
 
@@ -68,7 +81,7 @@ class Mover {
       circle(this.position.x, this.position.y, 2 * this.radius);
 
       // Draw tag
-      if(!this.hideTag) {
+      if (!this.hideTag) {
         fill(50)
         textSize(20);
         textFont(fontThinItalic);
@@ -76,38 +89,46 @@ class Mover {
       }
 
       // Draw velocity
-      if(!this.hideVel) {
+      if (!this.hideVel) {
+        // let vX = this.velocity.x - reference.velocity.x
+        // let vY = this.velocity.y - reference.velocity.y
+        // let vel = createVector(vY, vX)
+        // let theta = PI / 2 - vel.heading()
+        // let mag = vel.mag()
+        // let size = 3
+        // push()
+        // stroke(140);
+        // fill(140)
+        // translate(this.position.x, this.position.y)
+        // rotate(theta)
+        // line(0, 0, mag,0)
+        // beginShape();
+        // vertex(mag, 0);
+        // vertex(mag - 3 * size, size);
+        // vertex(mag - 3 * size, -size);
+        // endShape(CLOSE);
+        // pop()
         push()
         let vX = this.velocity.x - reference.velocity.x
         let vY = this.velocity.y - reference.velocity.y
+        let scale = this.velScale;
         translate(this.position.x, this.position.y)
         stroke(200, 100, 0);
         strokeWeight(1)
-        let velScale = 1;
-        line(0,0,vX*velScale,vY*velScale)
+        line(0, 0, vX * scale, vY * scale)
         pop()
       }
 
       // Draw Force
-      if(!this.hideForce) {
+      if (!this.hideForce) {
         stroke(0, 100, 200);
-        let forceScale = 0.02;
+        let forceScale = this.forceScale;
         line(this.position.x, this.position.y,
           forceScale * this.acc.x * this.mass + this.position.x, forceScale * this.acc.y * this.mass + this.position.y)
       }
 
-      // Draw Path
-      // stroke(r, g, b, 20)
-      // strokeWeight(1)
-      // noFill()
-      // beginShape()
-      // this.path.forEach((dot, i) => {
-      //   vertex(dot.x, dot.y)
-      // })
-      // endShape()
-
       // Draw Path (relative to reference)
-      if(!this.hidePath){
+      if (!this.hidePath) {
         push()
         translate(reference.position.x, reference.position.y)
         stroke(this.color)
@@ -121,7 +142,59 @@ class Mover {
         pop()
       }
     }
+  }
 
+  editViewShow(reference) {
+    if (!this.hide) {
+      // Draw circle
+      stroke(120);
+      fill(this.color)
+      circle(this.initPosition.x, this.initPosition.y, 2 * this.radius);
+
+      // Draw tag
+      if (!this.hideTag) {
+        fill(50)
+        textSize(20);
+        textFont(fontThinItalic);
+        text(`${this.tag}`, this.initPosition.x, this.initPosition.y - this.radius - 2)
+      }
+
+      // Draw velocity
+      if (!this.hideVel) {
+        push()
+        let vX = this.initVelocity.x - reference.initVelocity.x
+        let vY = this.initVelocity.y - reference.initVelocity.y
+        let scale = this.velScale;
+        translate(this.initPosition.x, this.initPosition.y)
+        stroke(200, 100, 0);
+        strokeWeight(1)
+        line(0, 0, vX * scale, vY * scale)
+        pop()
+      }
+
+      // Draw Force
+      if (!this.hideForce) {
+        stroke(0, 100, 200);
+        let forceScale = this.forceScale;
+        line(this.position.x, this.position.y,
+          forceScale * this.acc.x * this.mass + this.position.x, forceScale * this.acc.y * this.mass + this.position.y)
+      }
+
+      // Draw Path (relative to reference)
+      if (!this.hidePath) {
+        push()
+        translate(reference.initPosition.x, reference.initPosition.y)
+        stroke(this.color)
+        strokeWeight(1)
+        noFill()
+        beginShape()
+        this.relativePath.forEach((dot, i) => {
+          vertex(dot.x, dot.y)
+        })
+        endShape()
+        pop()
+      }
+    }
   }
 
 }
