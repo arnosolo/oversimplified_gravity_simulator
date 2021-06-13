@@ -179,6 +179,9 @@ const drawInit = () => {
     // mover.hideVel = false
     mover.editViewShow(reference)
   })
+
+  // draw grid
+  drawGrid()
 }
 
 
@@ -484,6 +487,21 @@ const setEditViewGUI = () => {
   initCondiEditor.append(readConditionBtn)
   initCondiEditor.append(initCondition)
 
+}
+
+const drawGrid = () => {
+  stroke(210,150,20, 1)
+  line(0,-height, 0, height)
+  line(-width, 0, width, 0)
+
+  let gap = 50
+  stroke(100,30)
+  for(let i = -width; i<=width; i+=gap) {
+    if(i != 0) line(i,-height, i, height)
+  }
+  for(let i = -height; i<=height; i+=gap) {
+    if(i != 0) line(-width, i, width, i)
+  }
 }
 
 // Utils
