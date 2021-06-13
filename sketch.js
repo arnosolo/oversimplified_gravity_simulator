@@ -241,12 +241,12 @@ const setGUI = () => {
 
   // hide/show velocity
   let hideVelBtn = document.createElement('button')
-  hideVelBtn.innerHTML = 'Show Velocity'
+  hideVelBtn.innerHTML = '🏃‍♂️ Show Velocity'
   hideVelBtn.onclick = (e) => {
-    if(hideVelBtn.innerHTML == 'Show Velocity'){
-      hideVelBtn.innerHTML = 'Hide Velocity'
+    if(hideVelBtn.innerHTML == '🏃‍♂️ Show Velocity'){
+      hideVelBtn.innerHTML = '🏃‍♂️ Hide Velocity'
     } else {
-      hideVelBtn.innerHTML = 'Show Velocity'
+      hideVelBtn.innerHTML = '🏃‍♂️ Show Velocity'
     }
     movers.forEach(m => m.hideVel = !m.hideVel)
   }
@@ -266,14 +266,14 @@ const setGUI = () => {
 
   let applyConditionBtn = document.createElement('button')
   applyConditionBtn.className = 'button'
-  applyConditionBtn.innerHTML = 'Apply Init condition'
+  applyConditionBtn.innerHTML = '✔️ Apply Init condition'
   applyConditionBtn.onclick = (e) => {
     moverConfigs = JSON.parse(initCondition.value)
   }
 
   let saveConditionBtn = document.createElement('button')
   saveConditionBtn.className = 'button'
-  saveConditionBtn.innerHTML = 'Save Init condition'
+  saveConditionBtn.innerHTML = '💾 Save Init condition'
   let funDownload = function (content, filename) {
     // 创建隐藏的下载链接
     let link = document.createElement('a');
@@ -294,7 +294,7 @@ const setGUI = () => {
 
   let readConditionBtn = document.createElement('button')
   readConditionBtn.className = 'button'
-  readConditionBtn.innerHTML = 'Read local file'
+  readConditionBtn.innerHTML = '📂 Read from file'
   readConditionBtn.onclick = (e) => {
     let input = document.createElement('input');
     input.type = 'file'
@@ -314,13 +314,13 @@ const setGUI = () => {
 
   let editViewBtn = document.createElement('button')
   editViewBtn.className = 'button'
-  editViewBtn.innerHTML = 'Edit view'
+  editViewBtn.innerHTML = '✍️ Edit view'
   editViewBtn.onclick = () => {
-    if(editViewBtn.innerHTML == 'Edit view') {
-      editViewBtn.innerHTML = 'Quit Edit view'
+    if(editViewBtn.innerHTML == '✍️ Edit view') {
+      editViewBtn.innerHTML = '✔️ Quit Edit view'
       drawMode = 'edit_init'
     } else {
-      editViewBtn.innerHTML = 'Edit view'
+      editViewBtn.innerHTML = '✍️ Edit view'
       drawMode = 'run'
       moverConfigs = JSON.parse(initCondition.value)
     }
@@ -393,12 +393,12 @@ const setEditViewGUI = () => {
 
   // hide/show velocity
   let hideVelBtn = document.createElement('button')
-  hideVelBtn.innerHTML = 'Show Velocity'
+  hideVelBtn.innerHTML = '🏃‍♂️ Show Velocity'
   hideVelBtn.onclick = (e) => {
-    if(hideVelBtn.innerHTML == 'Show Velocity'){
-      hideVelBtn.innerHTML = 'Hide Velocity'
+    if(hideVelBtn.innerHTML == '🏃‍♂️ Show Velocity'){
+      hideVelBtn.innerHTML = '🏃‍♂️ Hide Velocity'
     } else {
-      hideVelBtn.innerHTML = 'Show Velocity'
+      hideVelBtn.innerHTML = '🏃‍♂️ Show Velocity'
     }
     editViewMovers.forEach(m => m.hideVel = !m.hideVel)
   }
@@ -411,13 +411,13 @@ const setEditViewGUI = () => {
 
   let editViewBtn = document.createElement('button')
   editViewBtn.className = 'button'
-  editViewBtn.innerHTML = drawMode=='edit_init' ? 'Quit Edit view' : 'Edit view'
+  editViewBtn.innerHTML = drawMode=='edit_init' ? '✔️ Quit Edit view' : '✍️ Edit view'
   editViewBtn.onclick = () => {
-    if(editViewBtn.innerHTML == 'Edit view') {
-      editViewBtn.innerHTML = 'Quit Edit view'
+    if(editViewBtn.innerHTML == '✍️ Edit view') {
+      editViewBtn.innerHTML = '✔️ Quit Edit view'
       drawMode = 'edit_init'
     } else {
-      editViewBtn.innerHTML = 'Edit view'
+      editViewBtn.innerHTML = '✍️ Edit view'
       drawMode = 'run'
       moverConfigs = JSON.parse(initCondition.value)
     }
@@ -432,14 +432,14 @@ const setEditViewGUI = () => {
 
   let applyConditionBtn = document.createElement('button')
   applyConditionBtn.className = 'button'
-  applyConditionBtn.innerHTML = 'Apply Init condition'
+  applyConditionBtn.innerHTML = '✔️ Apply Init condition'
   applyConditionBtn.onclick = (e) => {
     moverConfigs = JSON.parse(initCondition.value)
   }
 
   let saveConditionBtn = document.createElement('button')
   saveConditionBtn.className = 'button'
-  saveConditionBtn.innerHTML = 'Save Init condition'
+  saveConditionBtn.innerHTML = '💾 Save Init condition'
   let funDownload = function (content, filename) {
     // 创建隐藏的下载链接
     let link = document.createElement('a');
@@ -460,7 +460,7 @@ const setEditViewGUI = () => {
 
   let readConditionBtn = document.createElement('button')
   readConditionBtn.className = 'button'
-  readConditionBtn.innerHTML = 'Read local file'
+  readConditionBtn.innerHTML = '📂 Read from file'
   readConditionBtn.onclick = (e) => {
     let input = document.createElement('input');
     input.type = 'file'
