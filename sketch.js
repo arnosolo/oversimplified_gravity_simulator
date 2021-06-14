@@ -379,9 +379,8 @@ const setGUI = () => {
           const file = event.target.files[0];
           let reader = new FileReader();
           reader.onload = () => {
-            console.log(reader.result);
+            EditModeMoverConfigs = JSON.parse(reader.result)
             moverConfigs = JSON.parse(reader.result)
-            moverConfigsEdit = JSON.parse(reader.result)
           };
           reader.readAsText(file);
         }
@@ -620,8 +619,8 @@ const setEditViewGUI = () => {
           let reader = new FileReader();
           reader.onload = () => {
             console.log(reader.result);
+            EditModeMoverConfigs = JSON.parse(reader.result)
             moverConfigs = JSON.parse(reader.result)
-            moverConfigsEdit = JSON.parse(reader.result)
           };
           reader.readAsText(file);
         }
