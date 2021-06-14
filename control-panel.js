@@ -44,14 +44,13 @@ const stopRecord = () => {
 
 function exportVideo(e) {
   let blob = new Blob(chunks, { "type": "video/webm;codecs=vp8" });
-  let vid = document.getElementById('video-display')
-  vid.controls = true;
+  let vid = document.createElement('video')
   vid.src = URL.createObjectURL(blob);
-  vid.play();
-
-  let a = document.getElementById('download-btn')
+  vid.controls = true;
+  // vid.play();
+  
+  let a = document.createElement('a')
   a.href = vid.src;
-  a.classList.add('show')
   a.download = `${new Date().toLocaleString()}.webm`;
   a.click();
 }

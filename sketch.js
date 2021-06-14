@@ -20,11 +20,13 @@ let editViewMovers = []
 let referencePicker
 let cameraPicker
 let prevReferenceName = referenceName
-let prevmoverConfigs = moverConfigs
+let prevmoverConfigs = JSON.parse(JSON.stringify(moverConfigs))
+let EditModeMoverConfigs = JSON.parse(JSON.stringify(moverConfigs))
 const originConfig = { tag: 'Origin', pathLenMax: 1, hide: true }
 let origin
 let showAllForce = false
 let showAllVel = false
+let applyConfigFlag = false
 
 // Main
 function preload() {
@@ -59,7 +61,8 @@ const drawRun = () => {
   background(220);
 
   // Check if initial condition changed
-  if(prevmoverConfigs != moverConfigs){
+    if(JSON.stringify(prevmoverConfigs) != JSON.stringify(moverConfigs) 
+      || applyConfigFlag){
     movers = []
 
     origin = new Mover(originConfig)
@@ -70,7 +73,8 @@ const drawRun = () => {
 
     setGUI()
 
-    prevmoverConfigs = moverConfigs
+    prevmoverConfigs = JSON.parse(JSON.stringify(moverConfigs))
+    applyConfigFlag = false
   }
 
   // 1. Set reference 
@@ -125,15 +129,17 @@ const drawInit = () => {
   }
 
   // Check if initial condition changed
-  if(prevmoverConfigs != moverConfigs){
+    if(JSON.stringify(prevmoverConfigs) != JSON.stringify(moverConfigs)
+      || applyConfigFlag){
     editViewMovers = []
     origin = new Mover(originConfig)
     editViewMovers.push(origin)
     moverConfigs.forEach(config => {
       editViewMovers.push(new Mover(config))
     })
-    prevmoverConfigs = moverConfigs
+    prevmoverConfigs = JSON.parse(JSON.stringify(moverConfigs))
     setEditViewGUI()
+    applyConfigFlag = false
   }
   
   // 1. Set reference 
@@ -273,19 +279,12 @@ const setGUI = () => {
   let initCondiEditor = document.getElementById('initial_condition')
   initCondiEditor.innerHTML = ''
 
-  let initCondition = document.createElement('textarea')
-  initCondition.id = 'initCondition'
-  initCondition.className = 'initCondition'
-  initCondition.cols = 30
-  initCondition.rows = 18
-  initCondition.value = JSON.stringify(moverConfigs)
-
-  let applyConditionBtn = document.createElement('button')
-  applyConditionBtn.className = 'button'
-  applyConditionBtn.innerHTML = '✔️ Apply Init condition'
-  applyConditionBtn.onclick = (e) => {
-    moverConfigs = JSON.parse(initCondition.value)
-  }
+  // let applyConditionBtn = document.createElement('button')
+  // applyConditionBtn.className = 'button'
+  // applyConditionBtn.innerHTML = '✔️ Apply Init condition'
+  // applyConditionBtn.onclick = (e) => {
+  //   moverConfigs = JSON.parse(initCondition.value)
+  // }
 
   let saveConditionBtn = document.createElement('button')
   saveConditionBtn.className = 'button'
@@ -334,15 +333,95 @@ const setGUI = () => {
   editViewBtn.onclick = () => {
     editMode = !editMode
     editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
-    moverConfigs = JSON.parse(initCondition.value)
+    // moverConfigs = JSON.parse(initCondition.value)
   }
 
-
   initCondiEditor.append(editViewBtn)
-  initCondiEditor.append(applyConditionBtn)
+  // initCondiEditor.append(applyConditionBtn)
   initCondiEditor.append(saveConditionBtn)
-  initCondiEditor.append(readConditionBtn)
-  initCondiEditor.append(initCondition)
+  // initCondiEditor.append(readConditionBtn)
+  
+  // Mover Config Editor
+  let configList = document.createElement('div')
+  configList.id = 'mover-list-app'
+  configList.className = 'control-panel'
+  initCondiEditor.append(configList)
+
+  const MoverConfigList = {
+    data() {
+      return {
+        EditModeMoverConfigs
+      }
+    },
+    methods: {
+      removeConfigItem(index) {
+        const r = confirm(`Remove ${this.EditModeMoverConfigs[index].tag} ?`)
+        if(r) this.EditModeMoverConfigs.splice(index, 1)
+      },
+      addMover() {
+        const moverConfig = {
+          tag: 'New mover', pX: 5, pY: 5, vX: 0, vY: 0,
+          mass: 0, radius: 10, color: '#9c9891', pathLenMax:50
+        }
+        this.EditModeMoverConfigs.unshift(moverConfig)
+      },
+      applyConfig() {
+        moverConfigs = JSON.parse(JSON.stringify(this.EditModeMoverConfigs))
+        applyConfigFlag = true
+      },
+      readConfig() {
+        let e = document.createElement('input');
+        e.type = 'file'
+        e.accept = 'json'
+        e.style.display = 'none';
+        e.click();
+        e.onchange = (event) => {
+          const file = event.target.files[0];
+          let reader = new FileReader();
+          reader.onload = () => {
+            console.log(reader.result);
+            moverConfigs = JSON.parse(reader.result)
+            moverConfigsEdit = JSON.parse(reader.result)
+          };
+          reader.readAsText(file);
+        }
+      }
+    },
+    template: `
+      <button @click="readConfig" class="button">📂 Read from file</button>
+      <button @click="applyConfig" class="button">✔️ Apply Init condition</button>
+      <button @click="addMover" class="button">➕ Add Mover</button>
+      <ul class="edit-area">
+        <mover-config-item v-for="(m,i) in EditModeMoverConfigs" 
+          v-bind:moverConfig="m"
+          v-bind:index="i"
+          v-bind:removeConfigItem="removeConfigItem"
+          class="mover-config-item">
+        </mover-config-item>
+      </ul>
+      `
+  }
+  const app = Vue.createApp(MoverConfigList)
+
+  app.component('mover-config-item', {
+    props:['moverConfig', 'index', 'removeConfigItem'],
+    template: `<li>
+      <h3>{{moverConfig.tag}}</h3>
+      <div><label>Tag</label>  <input v-model="moverConfig.tag" /> </div>
+      <div><label>PosX</label> <input v-model.number="moverConfig.pX" type="number" step="5"/> </div>
+      <div><label>PosY</label> <input v-model.number="moverConfig.pY" type="number" step="5"/> </div>
+      <div><label>VelX</label> <input v-model.number="moverConfig.vX" type="number" step="0.1"/> </div>
+      <div><label>VelY</label> <input v-model.number="moverConfig.vY" type="number" step="0.1"/> </div>
+      <div><label>Mass</label> <input v-model.number="moverConfig.mass" type="number"/> </div>
+      <div><label>Color</label> <input v-model="moverConfig.color" /> </div>
+      <div><label>Radius</label> <input v-model.number="moverConfig.radius" type="number"/> </div>
+      <div><label>PathLength</label> <input v-model.number="moverConfig.pathLenMax" type="number" step="10"/> </div>
+      <div><label>HideTag </label><input v-model.number="moverConfig.hideTag" type="checkbox"/> </div>
+      <div><button @click="removeConfigItem(this.index)" class="button"> Remove </button></div>
+      </li>`
+  })
+
+  app.mount('#mover-list-app')
 
 }
 
@@ -438,7 +517,7 @@ const setEditViewGUI = () => {
   editViewBtn.onclick = () => {
     editMode = !editMode
     editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
-    moverConfigs = JSON.parse(initCondition.value)
+    // moverConfigs = JSON.parse(initCondition.value)
   }
 
   let initCondition = document.createElement('textarea')
@@ -497,10 +576,92 @@ const setEditViewGUI = () => {
     }
 
   initCondiEditor.append(editViewBtn)
-  initCondiEditor.append(applyConditionBtn)
+  // initCondiEditor.append(applyConditionBtn)
   initCondiEditor.append(saveConditionBtn)
-  initCondiEditor.append(readConditionBtn)
-  initCondiEditor.append(initCondition)
+  // initCondiEditor.append(readConditionBtn)
+  // initCondiEditor.append(initCondition)
+
+  // Mover Config Editor
+  let configList = document.createElement('div')
+  configList.id = 'mover-list-app'
+  configList.className = 'control-panel'
+  initCondiEditor.append(configList)
+
+  const MoverConfigList = {
+    data() {
+      return {
+        EditModeMoverConfigs
+      }
+    },
+    methods: {
+      removeConfigItem(index) {
+        const r = confirm(`Remove ${this.EditModeMoverConfigs[index].tag} ?`)
+        if(r) this.EditModeMoverConfigs.splice(index, 1)
+      },
+      addMover() {
+        const moverConfig = {
+          tag: 'New mover', pX: 5, pY: 5, vX: 0, vY: 0,
+          mass: 0, radius: 10, color: '#9c9891', pathLenMax:50
+        }
+        this.EditModeMoverConfigs.unshift(moverConfig)
+      },
+      applyConfig() {
+        moverConfigs = JSON.parse(JSON.stringify(this.EditModeMoverConfigs))
+        applyConfigFlag = true
+      },
+      readConfig() {
+        let e = document.createElement('input');
+        e.type = 'file'
+        e.accept = 'json'
+        e.style.display = 'none';
+        e.click();
+        e.onchange = (event) => {
+          const file = event.target.files[0];
+          let reader = new FileReader();
+          reader.onload = () => {
+            console.log(reader.result);
+            moverConfigs = JSON.parse(reader.result)
+            moverConfigsEdit = JSON.parse(reader.result)
+          };
+          reader.readAsText(file);
+        }
+      }
+    },
+    template: `
+      <button @click="readConfig" class="button">📂 Read from file</button>
+      <button @click="applyConfig" class="button">✔️ Apply Init condition</button>
+      <button @click="addMover" class="button">➕ Add Mover</button>
+      <ul class="edit-area">
+        <mover-config-item v-for="(m,i) in EditModeMoverConfigs" 
+          v-bind:moverConfig="m"
+          v-bind:index="i"
+          v-bind:removeConfigItem="removeConfigItem"
+          class="mover-config-item">
+        </mover-config-item>
+      </ul>
+      `
+  }
+  const app = Vue.createApp(MoverConfigList)
+
+  app.component('mover-config-item', {
+    props:['moverConfig', 'index', 'removeConfigItem'],
+    template: `<li>
+      <h3>{{moverConfig.tag}}</h3>
+      <div><label>Tag</label>  <input v-model="moverConfig.tag" /> </div>
+      <div><label>PosX</label> <input v-model.number="moverConfig.pX" type="number" step="5"/> </div>
+      <div><label>PosY</label> <input v-model.number="moverConfig.pY" type="number" step="5"/> </div>
+      <div><label>VelX</label> <input v-model.number="moverConfig.vX" type="number" step="0.1"/> </div>
+      <div><label>VelY</label> <input v-model.number="moverConfig.vY" type="number" step="0.1"/> </div>
+      <div><label>Mass</label> <input v-model.number="moverConfig.mass" type="number"/> </div>
+      <div><label>Color</label> <input v-model="moverConfig.color" /> </div>
+      <div><label>Radius</label> <input v-model.number="moverConfig.radius" type="number"/> </div>
+      <div><label>PathLength</label> <input v-model.number="moverConfig.pathLenMax" type="number" step="10"/> </div>
+      <div><label>HideTag </label><input v-model.number="moverConfig.hideTag" type="checkbox"/> </div>
+      <div><button @click="removeConfigItem(this.index)" class="button"> Remove </button></div>
+      </li>`
+  })
+
+  app.mount('#mover-list-app')
 
 }
 
