@@ -618,7 +618,6 @@ const setEditViewGUI = () => {
           const file = event.target.files[0];
           let reader = new FileReader();
           reader.onload = () => {
-            console.log(reader.result);
             EditModeMoverConfigs = JSON.parse(reader.result)
             moverConfigs = JSON.parse(reader.result)
           };

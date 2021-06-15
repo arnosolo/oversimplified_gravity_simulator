@@ -2,13 +2,34 @@
 
 ![2021_6_9下午9_15_45.new](README.assets/2021_6_9下午9_15_45.new.gif)
 
-##### Introduction
+#### Introduction
 
-​	A simple gravity simulator, based on [p5js](https://p5js.org/). [Click here](https://arnosolo.github.io/oversimplified_gravity_simulator/) to enter the demo page.
+​	A oversimplified gravity simulator, based on [p5js](https://p5js.org/). [Click here](https://arnosolo.github.io/oversimplified_gravity_simulator/) to enter the demo page. 
+
+​	
+
+#### How it Work
+
+In each frame of animation, we 
+
+1. calculate the net force of each object, then calculate the acceleration according to the net force. Notice that force, distance are all vectors.
+
+   ![1](http://latex.codecogs.com/svg.latex?\overrightarrow{F}=\dfrac{Gm_{1}m_{2}}{\overrightarrow{r}^{2}}) 
+
+   <img src="README.assets/image-20210616053814338.png" alt="image-20210616053814338" style="zoom:65%;" /> 
+
+2. calculate the speed according to the acceleration, then calculate the position according to the speed
+
+   ![1](http://latex.codecogs.com/svg.latex?\begin{aligned}\overrightarrow{v}=\overrightarrow{v}_{prev}+\overrightarrow{a}dt\\
+   \overrightarrow{p}=\overrightarrow{p}_{prev}+\overrightarrow{v}dt\end{aligned}) 
+
+   <img src="README.assets/image-20210616060026909.png" alt="image-20210616060026909" style="zoom:67%;" /> 
+
+3. Draw mover in new position
 
 
 
-##### Change initial condition
+#### Change initial condition
 
 ​	You can find some predefined configuration in [initial_conditions](./initial_conditions) folder, include Solar system, Two Suns and Three Suns. You can also edit initial condition in demo page. Here is an example:
 
@@ -49,7 +70,9 @@ Note: you need to clear the comment to use the configuration, like this:
 
 
 
-##### Q&A
+#### Q&A
+
+##### Circular orbit
 
 1. How to calculate the speed of circular orbit?
 
