@@ -20,8 +20,8 @@ In each frame of animation, we
 
 2. calculate the speed according to the acceleration, then calculate the position according to the speed
 
-   ![1](http://latex.codecogs.com/svg.latex?\begin{aligned}\overrightarrow{v}=\overrightarrow{v}_{prev}+\overrightarrow{a}dt\\
-   \overrightarrow{p}=\overrightarrow{p}_{prev}+\overrightarrow{v}dt\end{aligned}) 
+   <img src="http://latex.codecogs.com/svg.latex?\begin{aligned}\overrightarrow{v}=\overrightarrow{v}_{prev}+\overrightarrow{a}dt\\
+   \overrightarrow{p}=\overrightarrow{p}_{prev}+\overrightarrow{v}dt\end{aligned}" alt="1" style="zoom:100%;" /> 
 
    <img src="README.assets/image-20210616060026909.png" alt="image-20210616060026909" style="zoom:67%;" /> 
 
@@ -31,7 +31,7 @@ In each frame of animation, we
 
 #### Change initial condition
 
-​	You can find some predefined configuration in [initial_conditions](./initial_conditions) folder, include Solar system, Two Suns and Three Suns. You can also edit initial condition in demo page. Here is an example:
+​	You can also edit initial condition with GUI in demo page. You can also find some predefined configuration in [initial_conditions](./initial_conditions) folder, include Solar system, Two Suns and Three Suns. Here is an example:
 
 ```json
 [
@@ -48,7 +48,7 @@ In each frame of animation, we
   }
 ]
 ```
-Note: you need to clear the comment to use the configuration, like this:
+Note: If you want use the json config file, you need clear comments in it, like this:
 
 ```json
 [
