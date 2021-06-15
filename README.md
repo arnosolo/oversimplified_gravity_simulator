@@ -20,8 +20,9 @@ In each frame of animation, we
 
 2. calculate the speed according to the acceleration, then calculate the position according to the speed
 
-   <img src="http://latex.codecogs.com/svg.latex?\begin{aligned}\overrightarrow{v}=\overrightarrow{v}_{prev}+\overrightarrow{a}dt\\
-   \overrightarrow{p}=\overrightarrow{p}_{prev}+\overrightarrow{v}dt\end{aligned}" alt="1" style="zoom:100%;" /> 
+   <img src="http://latex.codecogs.com/svg.latex?\overrightarrow{v}=\overrightarrow{v}_{prev}+\overrightarrow{a}dt" alt="2" style="zoom:100%;" /> 
+
+   ![3](http://latex.codecogs.com/svg.latex?\overrightarrow{p}=\overrightarrow{p}_{prev}+\overrightarrow{v}dt) 
 
    <img src="README.assets/image-20210616060026909.png" alt="image-20210616060026909" style="zoom:67%;" /> 
 
