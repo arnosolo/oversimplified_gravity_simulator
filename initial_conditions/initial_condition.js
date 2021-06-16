@@ -5,6 +5,11 @@ const moverConfigs1 = [
     mass: 6000, radius: 12, color: '#e69600',
     pathLenMax: 200,
   },
+  { // Hi
+    tag: 'Hi', pX: 5, pY: 5, vX: 32, vY: 0,
+    mass: 0.1, radius: 3, color: '#95a5a6',
+    pathLenMax: 50,
+  },
   { // Mercury
     tag: 'Mercury', pX: -80, pY: -100, vX: 0, vY: 27.386,
     mass: 15, radius: 4, color: '#78b400',

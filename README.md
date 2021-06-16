@@ -36,7 +36,7 @@ In each frame of animation, we
 
 #### Change initial condition
 
-​	You can also edit initial condition with GUI in demo page. You can also find some predefined configuration in [initial_conditions](./initial_conditions) folder, include Solar system, Two Suns and Three Suns. Here is an example:
+​	You can also edit initial condition with GUI in demo page. You can also find some predefined configuration in [initial_conditions](./initial_conditions) folder, include [Solar system](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_solar_system.json), [Two Suns](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_two_suns.json) and [Three Suns](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_two_suns.json). Here is an example:
 
 ```json
 [
