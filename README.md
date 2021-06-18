@@ -48,10 +48,14 @@ You can also find some predefined configuration in [initial_conditions](./initia
 
 * [three_bodies-triangle](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-three_bodies-triangle.json) 
 
+  (The only solution I can get)
+
   ![三体特解_三角形](README.assets/三体特解_三角形.gif) 
 
 * [three_bodies-figure_8_solution.json](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-three_bodies-figure_8_solution.json) 
 
+  (Find in [wiki]( \* https://en.wikipedia.org/wiki/Three-body_problem#cite_note-11))
+  
   ![三体特解_8字形轨道](README.assets/三体特解_8字形轨道.gif) 
 
 Finally, the following explains the meaning of a config item (GUI is recommended)
