@@ -52,13 +52,13 @@ You can also find some predefined configuration in [initial_conditions](./initia
 
 * [three_bodies-triangle](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-three_bodies-triangle) <- click link to keep edit
 
-  (The only solution I can get)
+  (It will drift after a while, but that's the best I can get)
 
   ![三体特解_三角形](README.assets/三体特解_三角形.gif) 
 
 * [three_bodies-figure_8_solution](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-three_bodies-figure_8_solution) <- click link to keep edit
 
-  (Find in [wiki]( \* https://en.wikipedia.org/wiki/Three-body_problem#cite_note-11))
+  (Find in [wiki](https://en.wikipedia.org/wiki/Three-body_problem#cite_note-11), this one is actually quite stable)
   
   ![三体特解_8字形轨道](README.assets/三体特解_8字形轨道.gif) 
 
@@ -132,7 +132,6 @@ Note: If you want use the json config file, you need clear comments in it, like 
      <img src="README.assets/image-20210612052628020.png" alt="image-20210612052628020" style="zoom:50%;" /> 
 
      [initial_condition-elliptical_orbit_demo](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-elliptical_orbit_demo) <- click link to keep edit
-   
-     
-   
+
+
    

@@ -32,7 +32,8 @@ function setInitMoverConfigs() {
       if (this.readyState == 4 && this.status == 200) {
         let resConfigs = JSON.parse(this.responseText);
         if(resConfigs[0].tag) {
-          moverConfigs = resConfigs
+          moverConfigs = JSON.parse(JSON.stringify(resConfigs))
+          EditModeMoverConfigs = JSON.parse(JSON.stringify(resConfigs))
         } else {
           moverConfigs = moverConfigs1
         }
@@ -97,6 +98,7 @@ const drawRun = () => {
   // Check if initial condition changed
     if(JSON.stringify(prevmoverConfigs) != JSON.stringify(moverConfigs) 
       || applyConfigFlag){
+    console.log('mover configs changed');
     movers = []
 
     origin = new Mover(originConfig)
@@ -168,6 +170,7 @@ const drawInit = () => {
   // Check if initial condition changed
     if(JSON.stringify(prevmoverConfigs) != JSON.stringify(moverConfigs)
       || applyConfigFlag){
+    console.log('mover configs changed');
     editViewMovers = []
     origin = new Mover(originConfig)
     editViewMovers.push(origin)
@@ -404,7 +407,7 @@ const setGUI = () => {
       addMover() {
         const moverConfig = {
           tag: 'New mover', pX: 5, pY: 5, vX: 0, vY: 0,
-          mass: 0, radius: 10, color: '#9c9891', pathLenMax:50
+          mass: 0, radius: 6, color: '#9c9891', pathLenMax:50
         }
         this.EditModeMoverConfigs.unshift(moverConfig)
       },
@@ -646,7 +649,7 @@ const setEditViewGUI = () => {
       addMover() {
         const moverConfig = {
           tag: 'New mover', pX: 5, pY: 5, vX: 0, vY: 0,
-          mass: 0, radius: 10, color: '#9c9891', pathLenMax:50
+          mass: 0, radius: 6, color: '#9c9891', pathLenMax:50
         }
         this.EditModeMoverConfigs.unshift(moverConfig)
       },
