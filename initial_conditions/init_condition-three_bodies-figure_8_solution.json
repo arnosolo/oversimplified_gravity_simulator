@@ -1,0 +1,44 @@
+[
+  {
+    "tag": "Sun",
+    "pX": -194.00087200000002,
+    "pY": 48.617506,
+    "vX": 6.993055275,
+    "vY": 6.48548595,
+    "mass": 45000,
+    "radius": 9,
+    "color": "#e69600",
+    "pathLenMax": 120,
+    "hideTag": true,
+    "forceScale": 0.0005,
+    "velScale": 2
+  },
+  {
+    "tag": "Sun2",
+    "pX": 0,
+    "pY": 0,
+    "vX": -13.98611055,
+    "vY": -12.9709719,
+    "mass": 45000,
+    "radius": 9,
+    "color": "#e69600",
+    "pathLenMax": 120,
+    "hideTag": true,
+    "forceScale": 0.0005,
+    "velScale": 2
+  },
+  {
+    "tag": "Sun3",
+    "pX": 194.00087200000002,
+    "pY": -48.617506,
+    "vX": 6.993055275,
+    "vY": 6.48548595,
+    "mass": 45000,
+    "radius": 9,
+    "color": "#e69600",
+    "pathLenMax": 120,
+    "hideTag": true,
+    "forceScale": 0.0005,
+    "velScale": 2
+  }
+]

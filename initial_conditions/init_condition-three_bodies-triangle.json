@@ -1,0 +1,41 @@
+[
+  {
+    "tag": "Sun",
+    "pX": -100,
+    "pY": 0,
+    "vX": 8.660254037844387,
+    "vY": 15.000000000000002,
+    "mass": 60000,
+    "radius": 12,
+    "color": "#e69600",
+    "pathLenMax": 30,
+    "forceScale": 0.0005,
+    "velScale": 2
+  },
+  {
+    "tag": "Sun3",
+    "pX": 0,
+    "pY": -173.20508075688767,
+    "vX": -17.320508075688775,
+    "vY": 0,
+    "mass": 60000,
+    "radius": 12,
+    "color": "#e69600",
+    "pathLenMax": 30,
+    "forceScale": 0.0005,
+    "velScale": 2
+  },
+  {
+    "tag": "Sun3",
+    "pX": 100,
+    "pY": 0,
+    "vX": 8.660254037844387,
+    "vY": -15.000000000000002,
+    "mass": 60000,
+    "radius": 12,
+    "color": "#e69600",
+    "pathLenMax": 30,
+    "forceScale": 0.0005,
+    "velScale": 2
+  }
+]

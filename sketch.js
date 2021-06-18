@@ -4,7 +4,7 @@
  */
 
 // Settings
-const G = 10 // Gravitational constant
+const G = 1 // Gravitational constant
 const FRAME_RATE = 50
 let moverConfigs = moverConfigs1
 let referenceName = 'Origin'
@@ -14,7 +14,7 @@ let editMode = false // true: edit init condition mode
 // Globals
 let cam1
 let fontThinItalic
-let camPos = { x: 0, y: 0, z:500 }
+let camPos = { x: 0, y: 0, z: 500 }
 let movers = []
 let editViewMovers = []
 let referencePicker
@@ -106,6 +106,9 @@ const drawRun = () => {
   if(temp) {
     camPos.x = temp.position.x
     camPos.y = temp.position.y
+  } else {
+    camPos.x = 0
+    camPos.y = 0
   }
   cam1.setPosition(camPos.x, camPos.y, camPos.z);
   cam1.lookAt(camPos.x, camPos.y, 0);
@@ -178,6 +181,9 @@ const drawInit = () => {
   if(temp) {
     camPos.x = temp.initPosition.x
     camPos.y = temp.initPosition.y
+  } else {
+    camPos.x = 0
+    camPos.y = 0
   }
   cam1.setPosition(camPos.x, camPos.y, camPos.z);
   cam1.lookAt(camPos.x, camPos.y, 0);
@@ -331,6 +337,9 @@ const setGUI = () => {
   editViewBtn.className = 'button'
   editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
   editViewBtn.onclick = () => {
+    cameraFollow = 'cameraFollow'
+    referenceName = 'Origin'
+    applyConfigFlag = true
     editMode = !editMode
     editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
     // moverConfigs = JSON.parse(initCondition.value)
@@ -514,6 +523,9 @@ const setEditViewGUI = () => {
   editViewBtn.className = 'button'
   editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
   editViewBtn.onclick = () => {
+    cameraFollow = 'cameraFollow'
+    referenceName = 'Origin'
+    applyConfigFlag = true
     editMode = !editMode
     editViewBtn.innerHTML = editMode ? '🚪🚶 Quit Edit view' : '✍️ Edit view'
     // moverConfigs = JSON.parse(initCondition.value)

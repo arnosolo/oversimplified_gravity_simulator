@@ -24,7 +24,7 @@ class Mover {
     this.hideVel = hideVel || true
     this.hideForce = hideForce || true
     this.velScale = velScale || 1
-    this.forceScale = forceScale || 0.2
+    this.forceScale = forceScale || 0.02
     this.forceColor = forceColor || '#7f8fa6'
     this.velColor = velColor || '#8c7ae6'
     this.frameCount = 0
@@ -105,7 +105,7 @@ class Mover {
         let vY = this.velocity.y - reference.velocity.y
         let vel = createVector(vY, vX)
         let theta = PI / 2 - vel.heading()
-        let mag = vel.mag()
+        let mag = vel.mag() * this.velScale
 
         // Dynamically change arrow size
         if(mag > 30) {
@@ -119,7 +119,7 @@ class Mover {
         fill(this.velColor)
         translate(this.position.x, this.position.y)
         rotate(theta)
-        line(0, 0, mag,0)
+        line(0, 0, mag, 0)
         beginShape();
         vertex(mag, 0);
         vertex(mag - 3 * size, size);
@@ -141,7 +141,7 @@ class Mover {
       // Draw Force
       if (!this.hideForce) {
         let size = 0
-        let force = p5.Vector.mult(this.acc, this.mass*this.forceScale)
+        let force = p5.Vector.mult(this.acc,this.mass * this.forceScale)
         let theta = force.heading()
         let mag = force.mag()
         // Dynamically change arrow size
