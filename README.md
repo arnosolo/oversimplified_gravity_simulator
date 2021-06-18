@@ -30,7 +30,11 @@ In each frame of animation, we
 
    <img src="README.assets/image-20210616082047546.png" alt="image-20210616082047546" style="zoom:70%;" /> 
 
+4. I wrote 80 lines of code to achieve above functions, [click here](https://editor.p5js.org/arno_solo/sketches/laI-n1Xjs) to start online editing. Documents you may use: [p5 reference](https://p5js.org/reference/) 
 
+   ![mini_oversimplified_gravity_simulator](README.assets/mini_oversimplified_gravity_simulator.gif) 
+
+   
 
 
 
@@ -42,17 +46,17 @@ You can also find some predefined configuration in [initial_conditions](./initia
 
 * [Solar system](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-solar_system.json) 
 
-* [Two Suns](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-dual_suns.json) 
+* [Two Suns](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-dual_suns) <- click link to keep edit
 
   ![双星_由远处恒星进行跟拍_Trim](README.assets/双星_由远处恒星进行跟拍_Trim.gif) 
 
-* [three_bodies-triangle](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-three_bodies-triangle.json) 
+* [three_bodies-triangle](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-three_bodies-triangle) <- click link to keep edit
 
   (The only solution I can get)
 
   ![三体特解_三角形](README.assets/三体特解_三角形.gif) 
 
-* [three_bodies-figure_8_solution.json](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-three_bodies-figure_8_solution.json) 
+* [three_bodies-figure_8_solution](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-three_bodies-figure_8_solution) <- click link to keep edit
 
   (Find in [wiki]( \* https://en.wikipedia.org/wiki/Three-body_problem#cite_note-11))
   
@@ -119,7 +123,7 @@ Note: If you want use the json config file, you need clear comments in it, like 
 
      ![image-20210612052027990](README.assets/image-20210612052027990.png) 
 
-     [**initial_condition-circular_orbit_demo.json**](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/initial_condition-circular_orbit_demo.json) 
+     [initial_condition-circular_orbit_demo](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-circular_orbit_demo) <- click link to keep edit
      
      
 
@@ -127,7 +131,7 @@ Note: If you want use the json config file, you need clear comments in it, like 
 
      <img src="README.assets/image-20210612052628020.png" alt="image-20210612052628020" style="zoom:50%;" /> 
 
-     [**initial_condition-elliptical_orbit_demo.json**](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/initial_condition-elliptical_orbit_demo.json) 
+     [initial_condition-elliptical_orbit_demo](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-elliptical_orbit_demo) <- click link to keep edit
    
      
    
