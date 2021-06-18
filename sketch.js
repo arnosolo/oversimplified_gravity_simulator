@@ -128,7 +128,7 @@ const drawRun = () => {
   // 2. Apply gravity
   movers.forEach(mover => {
     if(mover.tag != 'Origin') {
-      mover.attracted(movers.filter(item => item != mover))
+      mover.attracted(movers.filter(item => item != mover && item.tag!== 'Origin'))
     }
   })
 

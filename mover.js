@@ -32,10 +32,14 @@ class Mover {
 
   attracted(others) {
     this.acc = createVector(0, 0)
-    others.forEach((other, i) => {
+    others.forEach(other => {
+      // console.log(this.frameCount, other.tag);
       let distance = p5.Vector.sub(other.position, this.position)
       let distanceSq = distance.magSq(); // Sq: square
-      let acc = distance.normalize().mult(G * other.mass / distanceSq); // 对象的方法会修改对象的值
+      if(distanceSq === 0){
+        distanceSq = 1
+      }
+      let acc = distance.copy().setMag(G * other.mass / distanceSq)
       this.acc.add(acc)
     })
     
