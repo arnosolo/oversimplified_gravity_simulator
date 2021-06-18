@@ -6,10 +6,10 @@
 // Settings
 const G = 1 // Gravitational constant
 const FRAME_RATE = 50
-let moverConfigs = moverConfigs1
 let referenceName = 'Origin'
 let cameraFollow = 'Origin'
 let editMode = false // true: edit init condition mode
+let moverConfigs = moverConfigs1
 
 function getQueryArg(arg) {
   let query = window.location.search.substring(1);
@@ -21,14 +21,10 @@ function getQueryArg(arg) {
   return false;
 }
 
-// let configName = `init_condition-circular_orbit_demo`
-// console.log(`${window.location.origin}/initial_conditions/${configName}.json`);
-// console.log(window.location);
-
 function setInitMoverConfigs() {
   const configName = getQueryArg("config")
   if (configName) {
-    let url = `${window.location.origin}/initial_conditions/${configName}.json`
+    let url = `https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/${configName}.json`
     let request = new XMLHttpRequest();
     request.open("GET", url, true);
     request.send()
