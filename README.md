@@ -59,15 +59,17 @@ Finally, the following explains the meaning of a config item (GUI is recommended
 ```json
 [
   {
-    "tag": "Sun", // name
-    "pX": 0,      // init position
-    "pY": -100,   // init position
-    "vX": 0,      // init velocity
-    "vY": 0,      // init velocity
+    "tag": "Sun", # name
+    "pX": 0,      # init position
+    "pY": -100,   # init position
+    "vX": 0,      # init velocity
+    "vY": 0,      # init velocity
     "mass": 6000,
-    "radius": 12, // optional, default = 5
-    "color": "#e69600", // optional, default = "#9c9891"
-    "pathLenMax": 200, // trajectory length, optional, default = 300
+    "radius": 12, # optional, default is 5
+    "color": "#e69600", # optional, default is "#9c9891"
+    "pathLenMax": 200, # trajectory length, optional, default is 300
+    "velScale": 1, # scale velocity arrow, default is 1
+    "forceScale": 0.02 # scale force arrow, default is 0.02
   }
 ]
 ```
@@ -122,7 +124,7 @@ Note: If you want use the json config file, you need clear comments in it, like 
      <img src="README.assets/image-20210612052628020.png" alt="image-20210612052628020" style="zoom:50%;" /> 
 
      [**initial_condition-elliptical_orbit_demo.json**](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/initial_condition-elliptical_orbit_demo.json) 
-  
+   
      
    
    
