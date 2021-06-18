@@ -40,9 +40,9 @@ You edit initial condition with GUI in demo page.
 
 You can also find some predefined configuration in [initial_conditions](./initial_conditions) folder, include
 
-* [Solar system](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_solar_system.json) 
+* [Solar system](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-solar_system.json) 
 
-* [Two Suns](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_dual_suns.json) 
+* [Two Suns](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-dual_suns.json) 
 
   ![双星_由远处恒星进行跟拍_Trim](README.assets/双星_由远处恒星进行跟拍_Trim.gif) 
 
@@ -113,20 +113,16 @@ Note: If you want use the json config file, you need clear comments in it, like 
 
      ![image-20210612052027990](README.assets/image-20210612052027990.png) 
 
-     ```json
-     [{"tag":"Sun","pX":0,"pY":-100,"vX":0,"vY":0,"mass":60000,"radius":12,"color":"#e69600","pathLenMax":2},{"tag":"Mercury","pX":-80,"pY":-100,"vX":0,"vY":27.386,"mass":150,"radius":4,"color":"#78b400","pathLenMax":50}]
-     ```
-
+     [**initial_condition-circular_orbit_demo.json**](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/initial_condition-circular_orbit_demo.json) 
+     
      
 
    * If Mercury's speed is greater than this speed it will orbit in ellipse, eventually, it will escape from the Sun(about 1.414 * v_mercury). Learn more about [escape velocity](https://en.wikipedia.org/wiki/Escape_velocity). 
 
      <img src="README.assets/image-20210612052628020.png" alt="image-20210612052628020" style="zoom:50%;" /> 
 
-     ```json
-     [{"tag":"Sun","pX":0,"pY":-100,"vX":0,"vY":0,"mass":60000,"radius":12,"color":"#e69600","pathLenMax":2},{"tag":"Mercury","pX":-80,"pY":-100,"vX":0,"vY":34,"mass":150,"radius":4,"color":"#78b400","pathLenMax":200}]
-     ```
-
+     [**initial_condition-elliptical_orbit_demo.json**](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/initial_condition-elliptical_orbit_demo.json) 
+  
      
-
+   
    
