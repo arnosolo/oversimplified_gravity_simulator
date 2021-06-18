@@ -1,0 +1,24 @@
+[
+  {
+    "tag": "Sun",
+    "pX": 0,
+    "pY": -100,
+    "vX": 0,
+    "vY": 0,
+    "mass": 60000,
+    "radius": 12,
+    "color": "#e69600",
+    "pathLenMax": 2
+  },
+  {
+    "tag": "Mercury",
+    "pX": -80,
+    "pY": -100,
+    "vX": 0,
+    "vY": 34,
+    "mass": 150,
+    "radius": 4,
+    "color": "#78b400",
+    "pathLenMax": 200
+  }
+]

@@ -36,7 +36,25 @@ In each frame of animation, we
 
 #### Change initial condition
 
-​	You can also edit initial condition with GUI in demo page. You can also find some predefined configuration in [initial_conditions](./initial_conditions) folder, include [Solar system](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_solar_system.json), [Two Suns](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_two_suns.json) and [Three Suns](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_two_suns.json). Here is an example:
+You edit initial condition with GUI in demo page. 
+
+You can also find some predefined configuration in [initial_conditions](./initial_conditions) folder, include
+
+* [Solar system](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_solar_system.json) 
+
+* [Two Suns](https://raw.githubusercontent.com/arnosolo/oversimplified_gravity_simulator/master/initial_conditions/init_condition_dual_suns.json) 
+
+  ![双星_由远处恒星进行跟拍_Trim](README.assets/双星_由远处恒星进行跟拍_Trim.gif) 
+
+* [three_bodies-triangle](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-three_bodies-triangle.json) 
+
+  ![三体特解_三角形](README.assets/三体特解_三角形.gif) 
+
+* [three_bodies-figure_8_solution.json](https://github.com/arnosolo/oversimplified_gravity_simulator/blob/master/initial_conditions/init_condition-three_bodies-figure_8_solution.json) 
+
+  ![三体特解_8字形轨道](README.assets/三体特解_8字形轨道.gif) 
+
+Finally, the following explains the meaning of a config item (GUI is recommended)
 
 ```json
 [
@@ -96,7 +114,7 @@ Note: If you want use the json config file, you need clear comments in it, like 
      ![image-20210612052027990](README.assets/image-20210612052027990.png) 
 
      ```json
-     [{"tag":"Sun","pX":0,"pY":-100,"vX":0,"vY":0,"mass":6000,"radius":12,"color":"#e69600","pathLenMax":200},{"tag":"Mercury","pX":-80,"pY":-100,"vX":0,"vY":27.386,"mass":15,"radius":4,"color":"#78b400","pathLenMax":200}]
+     [{"tag":"Sun","pX":0,"pY":-100,"vX":0,"vY":0,"mass":60000,"radius":12,"color":"#e69600","pathLenMax":2},{"tag":"Mercury","pX":-80,"pY":-100,"vX":0,"vY":27.386,"mass":150,"radius":4,"color":"#78b400","pathLenMax":50}]
      ```
 
      
@@ -106,7 +124,7 @@ Note: If you want use the json config file, you need clear comments in it, like 
      <img src="README.assets/image-20210612052628020.png" alt="image-20210612052628020" style="zoom:50%;" /> 
 
      ```json
-     [{"tag":"Sun","pX":0,"pY":-100,"vX":0,"vY":0,"mass":6000,"radius":12,"color":"#e69600","pathLenMax":200},{"tag":"Mercury","pX":-80,"pY":-100,"vX":0,"vY":34,"mass":15,"radius":4,"color":"#78b400","pathLenMax":200}]
+     [{"tag":"Sun","pX":0,"pY":-100,"vX":0,"vY":0,"mass":60000,"radius":12,"color":"#e69600","pathLenMax":2},{"tag":"Mercury","pX":-80,"pY":-100,"vX":0,"vY":34,"mass":150,"radius":4,"color":"#78b400","pathLenMax":200}]
      ```
 
      
