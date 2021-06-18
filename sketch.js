@@ -11,6 +11,44 @@ let referenceName = 'Origin'
 let cameraFollow = 'Origin'
 let editMode = false // true: edit init condition mode
 
+function getQueryArg(arg) {
+  let query = window.location.search.substring(1);
+  let vars = query.split("&");
+  for (let i = 0; i < vars.length; i++) {
+    let pair = vars[i].split("=");
+    if (pair[0] == arg) { return pair[1]; }
+  }
+  return false;
+}
+
+// let configName = `init_condition-circular_orbit_demo`
+// console.log(`${window.location.origin}/initial_conditions/${configName}.json`);
+// console.log(window.location);
+
+function setInitMoverConfigs() {
+  const configName = getQueryArg("config")
+  if (configName) {
+    let url = `${window.location.origin}/initial_conditions/${configName}.json`
+    let request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.send()
+    request.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let resConfigs = JSON.parse(this.responseText);
+        if(resConfigs[0].tag) {
+          moverConfigs = resConfigs
+        } else {
+          moverConfigs = moverConfigs1
+        }
+      }
+    }
+  } else {
+    moverConfigs = moverConfigs1
+  }
+}
+
+setInitMoverConfigs()
+
 // Globals
 let cam1
 let fontThinItalic

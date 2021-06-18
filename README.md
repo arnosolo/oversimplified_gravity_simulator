@@ -107,13 +107,13 @@ Note: If you want use the json config file, you need clear comments in it, like 
 
    Let's say we have a Sun and a Mercury, and we want the Mercury orbit the Sun in circular, what speed should the Mercury has? What we need is this formula:
 
-   ![1](http://latex.codecogs.com/svg.latex?v_{mercury}=\sqrt{\dfrac{Gm__{sun}}{r}})
+   ![1](http://latex.codecogs.com/svg.latex?||\overrightarrow{v}||_{mercury}=\sqrt{\dfrac{Gm__{sun}}{||\overrightarrow{r}||})
 
-   G: Gravitational constant(default is 10)
+   G: Gravitational constant(default is 1)
 
    r: Distance
 
-   v_mercury : Velocity of mercury relative to the sun
+   v_mercury : Velocity of mercury relative to the sun, perpendicular to r
 
    * If Mercury's speed is equal to this speed it will orbit in circular
 
