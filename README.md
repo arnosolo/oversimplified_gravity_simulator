@@ -30,7 +30,7 @@ In each frame of animation, we
 
    <img src="README.assets/image-20210616082047546.png" alt="image-20210616082047546" style="zoom:70%;" /> 
 
-4. I wrote 80 lines of code to achieve above functions, [click here](https://editor.p5js.org/arno_solo/sketches/laI-n1Xjs) to start online editing. Documents you may use: [p5 reference](https://p5js.org/reference/) 
+4. I wrote 80 lines of code to achieve above functions, [click here](https://editor.p5js.org/arno_solo/sketches/laI-n1Xjs) to start online editing. Documents you may need: [p5 reference](https://p5js.org/reference/) 
 
    ![mini_oversimplified_gravity_simulator](README.assets/mini_oversimplified_gravity_simulator.gif) 
 
@@ -40,7 +40,7 @@ In each frame of animation, we
 
 #### Change initial condition
 
-You edit initial condition with GUI in demo page. 
+You can edit initial condition with GUI in demo page. 
 
 You can also find some predefined configuration in [initial_conditions](./initial_conditions) folder, include
 
