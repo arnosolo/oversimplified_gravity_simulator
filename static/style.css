@@ -9,19 +9,36 @@ html, body {
   flex-wrap: wrap;
   align-items: center;
   justify-content:center;
-  padding-top: 2em;
-  gap: 2em;
-  height: 100vh;
+  padding-top: 0.5em;
+  padding-bottom: 0.8em;
+  gap: 1.2em;
+  /* width: 100vw; */
+  /* height: 100vh; */
+  height: 100%;
 }
 
-.control-panel {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.8em;
-  /* background-color: antiquewhite; */
-  /* margin-left: 2em; */
+@media (max-width: 750px) {
+  .control-panel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
+    gap: 0.8em;
+  }
+}
+
+@media (min-width: 751px) {
+  .control-panel {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8em;
+    /* background-color: antiquewhite; */
+    /* margin-left: 2em; */
+  }
+  
 }
 
 .button {

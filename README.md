@@ -4,39 +4,9 @@
 
 #### Introduction
 
-​	A oversimplified gravity simulator, based on [p5js](https://p5js.org/). [Click here](https://arnosolo.github.io/oversimplified_gravity_simulator/) to enter the demo page. 
+​	A oversimplified gravity simulator, [Click here](https://arnosolo.github.io/oversimplified_gravity_simulator/) to enter the demo page. This project is based on [p5js](https://p5js.org/).
 
 ​	
-
-#### How it Work
-
-In each frame of animation, we 
-
-1. Calculate the net force of each object, then calculate the acceleration according to the net force. Notice that force, distance are all vectors.
-
-   ![1](http://latex.codecogs.com/svg.latex?\overrightarrow{F}=\dfrac{Gm_{1}m_{2}}{\overrightarrow{r}^{2}}) 
-
-   <img src="README.assets/image-20210616053814338.png" alt="image-20210616053814338" style="zoom:65%;" /> 
-
-2. Calculate the speed according to the acceleration.
-
-   <img src="http://latex.codecogs.com/svg.latex?\overrightarrow{v}=\overrightarrow{v}_{prev}+\overrightarrow{a}dt" alt="2" style="zoom:100%;" /> 
-
-   <img src="README.assets/image-20210616060026909.png" alt="image-20210616060026909" style="zoom:67%;" /> 
-
-3. Calculate the position according to the speed. Then draw mover in new position.
-
-   ![3](http://latex.codecogs.com/svg.latex?\overrightarrow{p}=\overrightarrow{p}_{prev}+\overrightarrow{v}dt) 
-
-   <img src="README.assets/image-20210616082047546.png" alt="image-20210616082047546" style="zoom:70%;" /> 
-
-4. I wrote 80 lines of code to achieve above functions, [click here](https://editor.p5js.org/arno_solo/sketches/laI-n1Xjs) to start online editing. Documents you may use: [p5 reference](https://p5js.org/reference/) 
-
-   ![mini_oversimplified_gravity_simulator](README.assets/mini_oversimplified_gravity_simulator.gif) 
-
-   
-
-
 
 #### Change initial condition
 
@@ -103,6 +73,36 @@ Note: If you want use the json config file, you need clear comments in it, like 
 
 
 
+#### How it Work
+
+In each frame of animation, we 
+
+1. Calculate the net force of each object, then calculate the acceleration according to the net force. Notice that force, distance are all vectors.
+
+   ![1](http://latex.codecogs.com/svg.latex?\overrightarrow{F}=\dfrac{Gm_{1}m_{2}}{\overrightarrow{r}^{2}}) 
+
+   <img src="README.assets/image-20210616053814338.png" alt="image-20210616053814338" style="zoom:65%;" /> 
+
+2. Calculate the speed according to the acceleration.
+
+   <img src="http://latex.codecogs.com/svg.latex?\overrightarrow{v}=\overrightarrow{v}_{prev}+\overrightarrow{a}dt" alt="2" style="zoom:100%;" /> 
+
+   <img src="README.assets/image-20210616060026909.png" alt="image-20210616060026909" style="zoom:67%;" /> 
+
+3. Calculate the position according to the speed. Then draw mover in new position.
+
+   ![3](http://latex.codecogs.com/svg.latex?\overrightarrow{p}=\overrightarrow{p}_{prev}+\overrightarrow{v}dt) 
+
+   <img src="README.assets/image-20210616082047546.png" alt="image-20210616082047546" style="zoom:70%;" /> 
+
+4. I wrote 80 lines of code to achieve above functions, [click here](https://editor.p5js.org/arno_solo/sketches/laI-n1Xjs) to start online editing. Documents you may use: [p5 reference](https://p5js.org/reference/) 
+
+   ![mini_oversimplified_gravity_simulator](README.assets/mini_oversimplified_gravity_simulator.gif) 
+
+   
+
+
+
 #### Q&A
 
 ##### Circular orbit
@@ -134,4 +134,3 @@ Note: If you want use the json config file, you need clear comments in it, like 
      [initial_condition-elliptical_orbit_demo](https://arnosolo.github.io/oversimplified_gravity_simulator/?config=init_condition-elliptical_orbit_demo) <- click link to keep edit
 
 
-   

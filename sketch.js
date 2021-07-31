@@ -352,7 +352,7 @@ const setGUI = () => {
 
   let readConditionBtn = document.createElement('button')
   readConditionBtn.className = 'button'
-  readConditionBtn.innerHTML = '📂 Read from file'
+  readConditionBtn.innerHTML = '📂 Read init condition'
   readConditionBtn.onclick = (e) => {
     let input = document.createElement('input');
     input.type = 'file'
@@ -433,7 +433,7 @@ const setGUI = () => {
       }
     },
     template: `
-      <button @click="readConfig" class="button">📂 Read from file</button>
+      <button @click="readConfig" class="button">📂 Read init condition</button>
       <button @click="applyConfig" class="button">✔️ Apply Init condition</button>
       <button @click="addMover" class="button">➕ Add Mover</button>
       <ul class="edit-area">
@@ -605,7 +605,7 @@ const setEditViewGUI = () => {
 
   let readConditionBtn = document.createElement('button')
   readConditionBtn.className = 'button'
-  readConditionBtn.innerHTML = '📂 Read from file'
+  readConditionBtn.innerHTML = '📂 Read init condition'
   readConditionBtn.onclick = (e) => {
     let input = document.createElement('input');
     input.type = 'file'
@@ -675,7 +675,7 @@ const setEditViewGUI = () => {
       }
     },
     template: `
-      <button @click="readConfig" class="button">📂 Read from file</button>
+      <button @click="readConfig" class="button">📂 Read init condition</button>
       <button @click="applyConfig" class="button">✔️ Apply Init condition</button>
       <button @click="addMover" class="button">➕ Add Mover</button>
       <ul class="edit-area">

@@ -11,8 +11,8 @@ let captureFrameRate = 50
 function record() {
   // Start record
   chunks.length = 0;
-  let options = { mimeType: 'video/webm;codecs=vp8' };
   let stream = document.querySelector('canvas').captureStream(captureFrameRate);
+  let options = { mimeType: 'video/webm;codecs=vp9' };
   recorder = new MediaRecorder(stream, options);
   recorder.ondataavailable = e => {
     if (e.data.size) {
@@ -43,7 +43,7 @@ const stopRecord = () => {
 }
 
 function exportVideo(e) {
-  let blob = new Blob(chunks, { "type": "video/webm;codecs=vp8" });
+  let blob = new Blob(chunks, { "type": "video/webm;codecs=vp9" });
   let vid = document.createElement('video')
   vid.src = URL.createObjectURL(blob);
   vid.controls = true;
@@ -51,7 +51,8 @@ function exportVideo(e) {
   
   let a = document.createElement('a')
   a.href = vid.src;
-  a.download = `${new Date().toLocaleString()}.webm`;
+  a.style = "display: none";
+  a.download = `${new Date().getTime()}.webm`;
   a.click();
 }
 
